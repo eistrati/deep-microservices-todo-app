@@ -15,17 +15,19 @@
     }
   ],
   "scripts": {
-    "prepare": "bin/test/prepare.sh",
+    "prepare": "npm run snyk-protect && bin/test/prepare.sh",
     "coverage": "bin/test/coverage.sh",
     "build": "npm run build:styles && npm run build:modules",
     "build:modules": "jspm bundle app/angular/index lib/modules_bundle.min.js --minify --skip-source-maps --inject",
     "build:modules:sfx": "jspm bundle-sfx app/angular/index lib/modules_bundle.sfx.min.js --minify",
-    "repository-update": "babel-node bin/tools/repository_update.js --no-interaction"
+    "repository-update": "babel-node bin/tools/repository_update.js --no-interaction",
+    "snyk-protect": "snyk protect"
   },
   "dependencies": {
     "minimist": "^1.2.x",
     "fs-extra": "^0.x.x",
-    "inquirer": "0.x.x"
+    "inquirer": "0.x.x",
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "isparta": "^3.1.x"
@@ -34,5 +36,6 @@
     "type": "git",
     "url": "https://github.com/MitocGroup/deep-microservices-todo-app.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
